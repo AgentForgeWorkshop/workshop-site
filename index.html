@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentForge — Hands-on Workshop on AI Agents for Scientific Research</title>
+<meta name="description" content="A four-day, hands-on workshop where domain scientists build and deploy their own local AI research assistants. NTU Singapore, August 24–29, 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ---------- HERO ---------- */
+.hero { position: relative; overflow: hidden; padding-top: clamp(40px, 6vw, 88px); padding-bottom: clamp(50px, 7vw, 96px); }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(40px, 6.6vw, 88px);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.hero h1 em { font-style: italic; color: var(--accent-ink); }
+.hero .sub {
+  font-size: clamp(17px, 1.7vw, 21px);
+  color: var(--ink-soft);
+  margin-top: 1.5em;
+  max-width: 48ch;
+}
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 2.2em; }
+
+.factstrip {
+  margin-top: clamp(36px, 5vw, 60px);
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.factstrip .f { padding: 22px 22px 22px 0; border-right: 1px solid var(--rule); }
+.factstrip .f:last-child { border-right: 0; padding-right: 0; }
+.factstrip .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
+.factstrip .v { font-family: var(--serif); font-size: clamp(18px, 1.7vw, 23px); color: var(--ink); line-height: 1.15; }
+.factstrip .v small { display: block; font-family: var(--sans); font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+
+/* ReAct loop motif */
+.motif { position: relative; aspect-ratio: 1; max-width: 420px; margin-inline: auto; width: 100%; }
+.motif svg { width: 100%; height: 100%; overflow: visible; }
+.motif .ring { fill: none; stroke: var(--rule-strong); stroke-width: 1; }
+.motif .ring-dash { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 5 9; opacity: 0.55; animation: spin 26s linear infinite; transform-origin: 50% 50%; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.motif .node circle { fill: var(--paper); stroke: var(--accent); stroke-width: 1.5; }
+.motif .node text { font-family: var(--mono); font-size: 9.4px; letter-spacing: 0.06em; fill: var(--ink); text-transform: uppercase; }
+.motif .node .role { fill: var(--ink-faint); font-size: 7px; }
+.motif .core text { font-family: var(--serif); fill: var(--ink); }
+.motif .core .lbl { font-family: var(--mono); font-size: 8px; letter-spacing: 0.14em; fill: var(--ink-faint); text-transform: uppercase; }
+.travel { fill: var(--accent); filter: drop-shadow(0 0 6px var(--accent)); }
+@media (prefers-reduced-motion: reduce) {
+  .motif .ring-dash, .travel-anim { animation: none !important; }
+}
+.travel-anim { offset-path: path('M 210 60 A 150 150 0 1 1 209.9 60'); animation: orbit 7s linear infinite; }
+@keyframes orbit { to { offset-distance: 100%; } }
+
+/* ---------- intro / gap ---------- */
+.lead-block { max-width: 880px; }
+.lead-block .big {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}
+.lead-block .big b { font-weight: 500; color: var(--accent-ink); font-style: italic; }
+
+/* ---------- pillars ---------- */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.pillar { background: var(--paper); padding: clamp(26px, 3vw, 40px); }
+.pillar .num { font-family: var(--mono); font-size: 12px; color: var(--accent-ink); letter-spacing: 0.1em; }
+.pillar h3 { font-size: 24px; margin: 14px 0 10px; font-weight: 400; }
+.pillar p { color: var(--ink-soft); font-size: 15.5px; margin: 0; }
+@media (max-width: 820px) { .pillars { grid-template-columns: 1fr; } }
+
+/* ---------- curriculum teaser ---------- */
+.curr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 44px); align-items: start; }
+.tut-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.tut-list li { border-bottom: 1px solid var(--rule); }
+.tut-list a { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: baseline; padding: 18px 4px; text-decoration: none; color: var(--ink); transition: padding .25s, color .2s; }
+.tut-list a:hover { padding-left: 12px; color: var(--accent-ink); }
+.tut-list .ti { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+.tut-list .tt { font-family: var(--serif); font-size: clamp(18px, 2vw, 23px); line-height: 1.2; }
+.tut-list .tt small { display: block; font-family: var(--sans); font-size: 13.5px; color: var(--ink-soft); margin-top: 4px; max-width: 44ch; }
+.tut-list .ta { font-family: var(--mono); font-size: 16px; color: var(--accent); }
+
+.sticky-aside { position: sticky; top: 90px; }
+.aside-card { border: 1px solid var(--rule); border-radius: var(--radius); padding: 28px; background: var(--paper-2); }
+.aside-card .eyebrow { margin-bottom: 14px; }
+.aside-card h3 { font-size: 28px; font-weight: 400; margin-bottom: 10px; }
+.aside-card p { color: var(--ink-soft); font-size: 15px; }
+.aside-card .legend { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+.aside-card .legend li { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.03em; color: var(--ink-soft); }
+.aside-card .dot { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+@media (max-width: 880px) { .curr-grid { grid-template-columns: 1fr; } .sticky-aside { position: static; } }
+
+/* ---------- audience ---------- */
+.aud-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(28px, 4vw, 64px); align-items: start; }
+.aud-grid ul { list-style: none; margin: 0; padding: 0; }
+.aud-grid ul li { padding: 16px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 14px; align-items: flex-start; }
+.aud-grid ul li:first-child { border-top: 1px solid var(--rule); }
+.aud-grid .ck { color: var(--accent); font-family: var(--mono); flex: none; margin-top: 2px; }
+.aud-grid ul li span.txt { font-size: 16px; }
+.aud-grid ul li span.txt b { font-weight: 600; }
+@media (max-width: 760px) { .aud-grid { grid-template-columns: 1fr; } }
+
+/* ---------- CTA band ---------- */
+.cta-band { background: var(--ink); color: var(--paper); border-radius: 6px; padding: clamp(40px, 6vw, 76px); text-align: center; position: relative; overflow: hidden; }
+[data-theme="dark"] .cta-band { background: var(--paper-3); }
+.cta-band h2 { font-size: clamp(30px, 4.5vw, 56px); font-weight: 300; color: var(--paper); }
+[data-theme="dark"] .cta-band h2 { color: var(--ink); }
+.cta-band p { color: oklch(0.85 0.01 85); max-width: 52ch; margin: 1.2em auto 2em; font-size: 17px; }
+[data-theme="dark"] .cta-band p { color: var(--ink-soft); }
+.cta-band .hint { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.7 0.01 85); margin-top: 20px; }
+.cta-band .btn-primary { background: var(--paper); color: var(--ink); }
+.cta-band .btn-primary:hover { background: var(--accent); color: var(--paper); }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="AgentForge home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="9.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.45"/><circle cx="13" cy="3.5" r="2.4" fill="currentColor"/><circle cx="13" cy="13" r="2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+      </span>
+      <span><b>Agent</b><i>Forge</i></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Overview</a></li>
+      <li><a href="program.html">Program</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="attend.html">Attend</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-btn" data-theme-toggle aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+      </button>
+      <a class="nav-cta desktop-only" href="attend.html#apply">Apply →</a>
+      <button class="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Schmidt Sciences · AI in Science Fellowship</p>
+        <h1>Build your own<br>AI <em>research assistant.</em></h1>
+        <p class="sub">A four-day, hands-on workshop where domain scientists go from chatbot user to agent builder — designing, prompting, and deploying local AI agents for real scientific work.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="attend.html#apply">Apply to attend <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="program.html">See the program</a>
+        </div>
+      </div>
+      <div class="motif" aria-hidden="true">
+        <svg viewBox="0 0 420 420">
+          <circle class="ring" cx="210" cy="210" r="150"/>
+          <circle class="ring-dash" cx="210" cy="210" r="150"/>
+          <!-- core -->
+          <g class="core" text-anchor="middle">
+            <text class="lbl" x="210" y="196">the</text>
+            <text x="210" y="226" font-size="30" font-style="italic">ReAct</text>
+            <text class="lbl" x="210" y="248">loop</text>
+          </g>
+          <!-- nodes -->
+          <g class="node" text-anchor="middle">
+            <g transform="translate(210,60)"><circle r="34"/><text y="-1">Reason</text><text class="role" y="12">think</text></g>
+            <g transform="translate(340,285)"><circle r="34"/><text y="-1">Act</text><text class="role" y="12">use tool</text></g>
+            <g transform="translate(80,285)"><circle r="34"/><text y="-1">Observe</text><text class="role" y="12">read result</text></g>
+          </g>
+          <circle class="travel travel-anim" r="5"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="factstrip">
+      <div class="f"><div class="k">Dates</div><div class="v">Aug 24–29<small>2026 · four full days</small></div></div>
+      <div class="f"><div class="k">Location</div><div class="v">NTU<small>Singapore</small></div></div>
+      <div class="f"><div class="k">Format</div><div class="v">In-person<small>tutorials + hackathon</small></div></div>
+      <div class="f"><div class="k">Cohort</div><div class="v">25 seats<small>across disciplines</small></div></div>
+    </div>
+  </div>
+</header>
+
+<hr class="divider">
+
+<!-- ============ THE GAP ============ -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="lead-block reveal">
+      <p class="eyebrow">Why this workshop</p>
+      <p class="big">Agentic AI is moving fast — but the conferences are built for AI researchers, not the scientists who could benefit most. AgentForge closes that gap: <b>practical upskilling for domain scientists</b> who haven't yet brought agents into their daily research.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILLARS ============ -->
+<section class="section-pad" style="padding-top:0;">
+  <div class="wrap">
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="num">01</div>
+        <h3>From scratch &amp; on platforms</h3>
+        <p>Understand the architecture of an agent — then build one from the ground up and on existing platforms like Claude Code and Antigravity.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">02</div>
+        <h3>Private &amp; local</h3>
+        <p>Deploy secure, privacy-preserving agents you control — fit for sensitive scientific data and proprietary research.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">03</div>
+        <h3>Tailored to your science</h3>
+        <p>Literature review, querying specialised databases, running custom analysis scripts — agents shaped around your real workflows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ CURRICULUM TEASER ============ -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="curr-grid">
+      <div class="reveal">
+        <p class="eyebrow">The curriculum</p>
+        <h2 class="section-head" style="margin-bottom:24px;font-size:clamp(28px,3.6vw,44px);font-weight:300;">Five tutorials, building toward an autonomous research assistant.</h2>
+        <ul class="tut-list">
+          <li><a href="program.html#tutorials"><span class="ti">T1</span><span class="tt">From Chatbot to Agent<small>The ReAct framework — build a literature-scout agent that searches arXiv.</small></span><span class="ta">→</span></a></li>
+          <li><a href="program.html#tutorials"><span class="ti">T2</span><span class="tt">Agentic Memory &amp; RAG<small>Give agents domain knowledge without hallucinating facts.</small></span><span class="ta">→</span></a></li>
+          <li><a href="program.html#tutorials"><span class="ti">T3</span><span class="tt">MCP &amp; Skills<small>Tool-calling, the Model Context Protocol, file manipulation, ToolUniverse.</small></span><span class="ta">→</span></a></li>
+          <li><a href="program.html#tutorials"><span class="ti">T4</span><span class="tt">Multi-Agent Orchestration<small>Agents that communicate, debate, and delegate across roles.</small></span><span class="ta">→</span></a></li>
+          <li><a href="program.html#tutorials"><span class="ti">T5</span><span class="tt">Autonomous Agents<small>An end-to-end assistant — and always-on frameworks like OpenClaw.</small></span><span class="ta">→</span></a></li>
+        </ul>
+      </div>
+      <div class="sticky-aside reveal" data-delay="120">
+        <div class="aside-card">
+          <p class="eyebrow">Then: the hackathon</p>
+          <h3>Two days. Your data. A working agent.</h3>
+          <p>Form groups of 3–5 by discipline, bring your own datasets and bottlenecks, and ship a custom agent — closing with a five-minute live demo and an award.</p>
+          <ul class="legend">
+            <li><span class="dot" style="background:var(--c-keynote)"></span> Keynotes &amp; social</li>
+            <li><span class="dot" style="background:var(--c-tutorial)"></span> Tutorials</li>
+            <li><span class="dot" style="background:var(--c-hack)"></span> Hackathon</li>
+            <li><span class="dot" style="background:var(--c-present)"></span> Presentations &amp; awards</li>
+          </ul>
+          <a class="btn btn-ghost" style="margin-top:22px;" href="program.html#schedule">View full schedule</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ AUDIENCE ============ -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="aud-grid">
+      <div class="reveal">
+        <p class="eyebrow">Who should apply</p>
+        <h2 style="font-size:clamp(28px,3.6vw,44px);font-weight:300;">Built for scientists, <br>not AI specialists.</h2>
+        <p style="color:var(--ink-soft);margin-top:16px;max-width:36ch;">No prior agent experience required — just curiosity and a research problem worth solving.</p>
+      </div>
+      <ul class="reveal" data-delay="100">
+        <li><span class="ck">→</span><span class="txt"><b>Domain scientists &amp; researchers</b> who want to integrate AI agents into daily workflows.</span></li>
+        <li><span class="ck">→</span><span class="txt"><b>Schmidt AI in Science Fellows &amp; alumni</b>, alongside external participants from universities.</span></li>
+        <li><span class="ck">→</span><span class="txt"><b>Across disciplines</b> — bioinformatics, materials science, physics, chemistry, and beyond.</span></li>
+        <li><span class="ck">→</span><span class="txt"><b>People with a problem to bring</b> — a dataset, a tool, or a research bottleneck for the hackathon.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section-pad" style="padding-top:0;">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2>Bring agents into your lab.</h2>
+      <p>Twenty-five seats, four days at NTU Singapore, and an agent that's yours to keep. Applications are reviewed on a rolling basis.</p>
+      <a class="btn btn-primary" href="attend.html#apply">Apply to attend <span class="arrow">→</span></a>
+      <div class="hint">Aug 24–29, 2026 · Nanyang Executive Centre</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <span class="mark" aria-hidden="true"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="9.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.45"/><circle cx="13" cy="3.5" r="2.4" fill="currentColor"/><circle cx="13" cy="13" r="2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span>
+          <span><b>Agent</b><i>Forge</i></span>
+        </a>
+        <p>A hands-on workshop on AI agents for scientific research assistants, hosted at Nanyang Technological University, Singapore.</p>
+        <div style="display:flex;gap:10px;margin-top:18px;align-items:center;">
+          <span class="tag">Theme</span>
+          <button class="theme-btn" data-accent-set="" aria-pressed="true" title="Ink blue" style="background:oklch(0.48 0.13 256)"></button>
+          <button class="theme-btn" data-accent-set="green" aria-pressed="false" title="Forest" style="background:oklch(0.52 0.11 155)"></button>
+          <button class="theme-btn" data-accent-set="oxblood" aria-pressed="false" title="Oxblood" style="background:oklch(0.46 0.13 22)"></button>
+        </div>
+      </div>
+      <div>
+        <h4>Workshop</h4>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="program.html#schedule">Schedule</a></li>
+          <li><a href="program.html#tutorials">Tutorials</a></li>
+          <li><a href="program.html#hackathon">Hackathon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Attend</h4>
+        <ul>
+          <li><a href="people.html">Speakers &amp; organizers</a></li>
+          <li><a href="attend.html#venue">Venue &amp; travel</a></li>
+          <li><a href="attend.html#apply">Apply</a></li>
+          <li><a href="attend.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AgentForge · NTU Singapore</span>
+      <span>Supported by Schmidt Sciences — AI in Science Fellowship, Community Initiatives Fund</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attend — AgentForge</title>
+<meta name="description" content="Apply to AgentForge: venue, travel to NTU Singapore, eligibility, and frequently asked questions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { padding-block: clamp(48px, 7vw, 96px) clamp(28px, 4vw, 48px); }
+.page-hero h1 { font-size: clamp(38px, 6vw, 76px); font-weight: 300; letter-spacing: -0.02em; line-height: 1; }
+.page-hero .lead { font-size: clamp(17px, 1.7vw, 21px); color: var(--ink-soft); max-width: 54ch; margin-top: 1.3em; }
+
+/* venue */
+.venue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,60px); align-items: center; }
+.ph {
+  position: relative; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--rule);
+  background-image: repeating-linear-gradient(135deg, var(--paper-2) 0 11px, var(--paper-3) 11px 22px);
+  aspect-ratio: 4/3;
+  display: grid; place-items: center;
+}
+.ph span { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); background: var(--paper); padding: 6px 12px; border-radius: 100px; border: 1px solid var(--rule); }
+.venue-grid h2 { font-size: clamp(26px,3.4vw,40px); font-weight: 300; }
+.venue-list { list-style: none; margin: 20px 0 0; padding: 0; }
+.venue-list li { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--rule); align-items: baseline; }
+.venue-list .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); }
+.venue-list .v { font-size: 15.5px; }
+.venue-list .v b { font-weight: 600; }
+@media (max-width: 760px) { .venue-grid { grid-template-columns: 1fr; } }
+
+/* travel cards */
+.travel-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.tcard { background: var(--paper); padding: clamp(24px,3vw,36px); }
+.tcard .ico { font-family: var(--mono); color: var(--accent-ink); font-size: 13px; letter-spacing: 0.1em; }
+.tcard h3 { font-size: 21px; font-weight: 400; margin: 12px 0 8px; }
+.tcard p { color: var(--ink-soft); font-size: 14.5px; margin: 0; }
+@media (max-width: 760px) { .travel-grid { grid-template-columns: 1fr; } }
+
+/* apply */
+.apply-wrap { background: var(--ink); color: var(--paper); border-radius: 6px; padding: clamp(32px,5vw,72px); }
+[data-theme="dark"] .apply-wrap { background: var(--paper-2); color: var(--ink); border: 1px solid var(--rule); }
+.apply-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,56px); align-items: start; }
+.apply-wrap h2 { font-size: clamp(28px,4vw,52px); font-weight: 300; color: var(--paper); }
+[data-theme="dark"] .apply-wrap h2 { color: var(--ink); }
+.apply-wrap .eyebrow { color: oklch(0.78 0.06 256); }
+[data-theme="dark"] .apply-wrap .eyebrow { color: var(--accent-ink); }
+.apply-wrap p.intro { color: oklch(0.85 0.01 85); font-size: 16px; margin-top:14px; }
+[data-theme="dark"] .apply-wrap p.intro { color: var(--ink-soft); }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.steps li { display: grid; grid-template-columns: auto 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid oklch(1 0 0 / 0.12); }
+[data-theme="dark"] .steps li { border-top-color: var(--rule); }
+.steps li::before { counter-increment: s; content: counter(s,decimal-leading-zero); font-family: var(--mono); font-size: 12px; color: oklch(0.8 0.06 256); }
+[data-theme="dark"] .steps li::before { color: var(--accent-ink); }
+.steps .st { font-weight: 600; font-size: 15.5px; }
+.steps .sd { font-size: 14px; color: oklch(0.82 0.01 85); margin-top: 3px; }
+[data-theme="dark"] .steps .sd { color: var(--ink-soft); }
+.apply-card { background: oklch(1 0 0 / 0.06); border: 1px solid oklch(1 0 0 / 0.14); border-radius: var(--radius); padding: 28px; }
+[data-theme="dark"] .apply-card { background: var(--paper); border-color: var(--rule); }
+.apply-card .row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid oklch(1 0 0 / 0.1); font-size: 14.5px; }
+[data-theme="dark"] .apply-card .row { border-bottom-color: var(--rule); }
+.apply-card .row:last-of-type { border-bottom: 0; }
+.apply-card .row .k { color: oklch(0.78 0.01 85); font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; }
+[data-theme="dark"] .apply-card .row .k { color: var(--ink-faint); }
+.apply-card .row .v { font-weight: 500; }
+.apply-card .btn-primary { background: var(--paper); color: var(--ink); width: 100%; justify-content: center; margin-top: 22px; }
+.apply-card .btn-primary:hover { background: var(--accent); color: var(--paper); }
+[data-theme="dark"] .apply-card .btn-primary { background: var(--accent); color: var(--paper); }
+.apply-card .note { font-family: var(--mono); font-size: 11px; color: oklch(0.7 0.01 85); margin-top: 14px; text-align: center; letter-spacing: 0.04em; }
+[data-theme="dark"] .apply-card .note { color: var(--ink-faint); }
+@media (max-width: 760px) { .apply-grid { grid-template-columns: 1fr; } }
+
+/* faq */
+.faq-item { border-bottom: 1px solid var(--rule); }
+.faq-item:first-child { border-top: 1px solid var(--rule); }
+.faq-q { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 4px; cursor: pointer; font-family: var(--serif); font-size: clamp(18px,2vw,22px); font-weight: 400; list-style: none; }
+.faq-q .pm { font-family: var(--mono); color: var(--accent); transition: transform .3s; flex: none; font-size: 20px; }
+.faq-item.open .faq-q .pm { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.faq-item.open .faq-a { max-height: 360px; }
+.faq-a p { color: var(--ink-soft); font-size: 15.5px; padding: 0 4px 24px; margin: 0; max-width: 70ch; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="AgentForge home">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="9.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.45"/><circle cx="13" cy="3.5" r="2.4" fill="currentColor"/><circle cx="13" cy="13" r="2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span>
+      <span><b>Agent</b><i>Forge</i></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="program.html">Program</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="attend.html" class="active">Attend</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-btn" data-theme-toggle aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg></button>
+      <a class="nav-cta desktop-only" href="#apply">Apply →</a>
+      <button class="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Attend</p>
+    <h1>Four days at NTU,<br>Singapore.</h1>
+    <p class="lead">Everything you need to plan your trip — where you'll stay, how to get here, and how to apply for one of twenty-five seats.</p>
+  </div>
+</header>
+
+<!-- ============ VENUE ============ -->
+<section class="section-pad" id="venue" style="padding-top:clamp(28px,4vw,56px);">
+  <div class="wrap">
+    <div class="venue-grid reveal">
+      <div class="ph"><span>Photo — Nanyang Executive Centre</span></div>
+      <div>
+        <p class="eyebrow">Venue &amp; accommodation</p>
+        <h2>Nanyang Executive Centre</h2>
+        <p style="color:var(--ink-soft);margin-top:14px;">An immersive, in-person experience on the NTU campus — sessions, meals, and accommodation under one roof, so the cohort stays together for all four days.</p>
+        <ul class="venue-list">
+          <li><span class="k">Stay</span><span class="v"><b>4 nights</b> at the NEC, on campus</span></li>
+          <li><span class="k">Dining</span><span class="v">Breakfast, lunch &amp; coffee breaks via NTU Catering; group dinners at partner restaurants — diverse dietary needs accommodated</span></li>
+          <li><span class="k">Setting</span><span class="v">NTU campus &amp; CleanTech Park, with a group outing to Gardens by the Bay</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ TRAVEL ============ -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Getting here</p>
+      <h2 style="font-size:clamp(28px,3.6vw,44px);font-weight:300;">A strategic hub for global attendees.</h2>
+      <p class="lead">Singapore's Changi Airport offers extensive global connectivity, making NTU easy to reach from Asia, Europe, and the Americas.</p>
+    </div>
+    <div class="travel-grid reveal">
+      <div class="tcard"><div class="ico">→ AIR</div><h3>Via Changi Airport</h3><p>One of the world's best-connected airports, roughly an hour across the island from NTU's western campus.</p></div>
+      <div class="tcard"><div class="ico">→ CAMPUS</div><h3>On arrival</h3><p>Day 0 is arrival day — check in at the NEC, settle in, and join the welcome dinner and icebreaker.</p></div>
+      <div class="tcard"><div class="ico">→ DEPART</div><h3>Departures</h3><p>Day 5 (Fri) is departure day, after the farewell dinner that closes Day 4.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ APPLY ============ -->
+<section class="section-pad" id="apply">
+  <div class="wrap">
+    <div class="apply-wrap reveal">
+      <div class="apply-grid">
+        <div>
+          <p class="eyebrow">Apply</p>
+          <h2>Claim one of 25 seats.</h2>
+          <p class="intro">Participation is limited to twenty-five, excluding organizers and invited speakers — kept small so every team gets hands-on support. We convene a diverse cohort across disciplines, prioritising researchers with a genuine interest in building agents for their own science.</p>
+          <ol class="steps">
+            <li><div><div class="st">Tell us about your research</div><div class="sd">Your field, and the workflow or bottleneck you'd want an agent to help with.</div></div></li>
+            <li><div><div class="st">Bring a problem to the hackathon</div><div class="sd">A dataset, a tool, or an open question worth two focused days.</div></div></li>
+            <li><div><div class="st">Hear back on a rolling basis</div><div class="sd">Applications are reviewed as they arrive until seats are filled.</div></div></li>
+          </ol>
+        </div>
+        <div class="apply-card">
+          <div class="row"><span class="k">Dates</span><span class="v">Aug 24–29, 2026</span></div>
+          <div class="row"><span class="k">Location</span><span class="v">NTU, Singapore</span></div>
+          <div class="row"><span class="k">Format</span><span class="v">In-person</span></div>
+          <div class="row"><span class="k">Seats</span><span class="v">25</span></div>
+          <div class="row"><span class="k">Prereqs</span><span class="v">None required</span></div>
+          <a class="btn btn-primary" href="mailto:agentforge@ntu.edu.sg?subject=AgentForge%202026%20%E2%80%94%20Application">Start your application <span class="arrow">→</span></a>
+          <div class="note">Registration form opens soon · questions welcome by email</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section-pad" id="faq" style="padding-top:0;">
+  <div class="wrap-narrow">
+    <div class="section-head reveal" style="margin-bottom:28px;">
+      <p class="eyebrow">FAQ</p>
+      <h2 style="font-size:clamp(28px,3.6vw,44px);font-weight:300;">Good to know.</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item open">
+        <div class="faq-q">Do I need prior experience with AI agents? <span class="pm">+</span></div>
+        <div class="faq-a"><p>No. AgentForge is built specifically for domain scientists who haven't yet integrated agents into their work. Tutorials are ordered from foundations to advanced topics so everyone can follow the progression. Comfort with basic scripting helps for the hands-on sessions.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What will I leave with? <span class="pm">+</span></div>
+        <div class="faq-a"><p>A working prototype of a personal AI research assistant, a shared GitHub repository, and a network of collaborators. Teams also produce a short report of insights and open questions, which feeds into a post-event perspective article.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What should I bring to the hackathon? <span class="pm">+</span></div>
+        <div class="faq-a"><p>Your own tools, datasets, and a real research bottleneck. Teams of 3–5 form around shared scientific disciplines, then design, prompt, and deploy a custom agent over two days.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Who can apply? <span class="pm">+</span></div>
+        <div class="faq-a"><p>Schmidt AI in Science Fellows and alumni, plus external participants from universities. We look for demonstrated interest in — or relevant expertise related to — the workshop themes, across a diverse range of disciplines.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Are the sessions recorded? <span class="pm">+</span></div>
+        <div class="faq-a"><p>Yes — tutorial recordings are planned for upload to YouTube after the event, and all notebooks live in a dedicated public GitHub repository.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Who supports the workshop? <span class="pm">+</span></div>
+        <div class="faq-a"><p>AgentForge is supported by Schmidt Sciences through the AI in Science Fellowship Community Initiatives Fund, and endorsed by NTU's Research Support Office.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="9.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.45"/><circle cx="13" cy="3.5" r="2.4" fill="currentColor"/><circle cx="13" cy="13" r="2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span><span><b>Agent</b><i>Forge</i></span></a>
+        <p>A hands-on workshop on AI agents for scientific research assistants, hosted at Nanyang Technological University, Singapore.</p>
+      </div>
+      <div>
+        <h4>Workshop</h4>
+        <ul><li><a href="index.html">Overview</a></li><li><a href="program.html#schedule">Schedule</a></li><li><a href="program.html#tutorials">Tutorials</a></li><li><a href="program.html#hackathon">Hackathon</a></li></ul>
+      </div>
+      <div>
+        <h4>Attend</h4>
+        <ul><li><a href="people.html">Speakers &amp; organizers</a></li><li><a href="attend.html#venue">Venue &amp; travel</a></li><li><a href="attend.html#apply">Apply</a></li><li><a href="attend.html#faq">FAQ</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AgentForge · NTU Singapore</span>
+      <span>Supported by Schmidt Sciences — AI in Science Fellowship, Community Initiatives Fund</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
