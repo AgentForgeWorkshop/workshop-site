@@ -3,195 +3,257 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AgentForge — Hands-on Workshop on AI Agents for Scientific Research Assistants</title>
+  <title>AgentForge — Hands-on Workshop on AI Agents as Scientific Research Assistants</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --color-bg: #ffffff;
-      --color-bg-alt: #f5f4f2;
-      --color-primary: #1a2b5e;
-      --color-accent: #e8202a;
-      --color-accent-warm: #f47d20;
-      --color-text: #2d2d2d;
-      --color-text-light: #6b7280;
-      --color-border: #e5e1db;
-      --max-width: 860px;
+      --bg: #f7f5f1;
+      --bg-panel: #ffffff;
+      --bg-panel-alt: #eef0ec;
+      --ink: #26314f;
+      --text: #47443e;
+      --text-light: #8a8578;
+      --accent: #b8542e;
+      --accent-warm: #c97a3a;
+      --border: #e2ddd2;
+      --max-width: 730px;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
     }
 
     [data-theme="dark"] {
-      --color-bg: #1a1f2e;
-      --color-bg-alt: #212740;
-      --color-primary: #e8f0ff;
-      --color-accent: #f4523a;
-      --color-accent-warm: #f47d20;
-      --color-text: #d1d5e0;
-      --color-text-light: #8892a4;
-      --color-border: #2e3650;
+      --bg: #1b1e26;
+      --bg-panel: #21252f;
+      --bg-panel-alt: #262a35;
+      --ink: #dbe1f0;
+      --text: #c7c3ba;
+      --text-light: #8b8779;
+      --accent: #d1734a;
+      --accent-warm: #d99257;
+      --border: #333748;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'DM Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
-      color: var(--color-text);
-      line-height: 1.75;
-      background: var(--color-bg);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
     }
 
-    /* ── Hero / Header ── */
-    .hero {
-      background: var(--color-bg);
-      color: var(--color-primary);
-      text-align: center;
-      padding: 4rem 1.5rem 3rem;
-      border-bottom: 1px solid var(--color-border);
-    }
-    .hero img.logo {
-      max-width: 420px;
-      margin-bottom: 2rem;
-      border-radius: 12px;
-    }
-    [data-theme="dark"] .hero img.logo {
-      background: #fff;
-      padding: 1rem 1.5rem;
-    }
-    .hero h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.01em;
-      color: var(--color-primary);
-    }
-    .hero .subtitle {
-      font-size: 1.2rem;
-      color: var(--color-text-light);
-      margin-bottom: 0.3rem;
-    }
-    .hero .details {
-      font-size: 1.1rem;
-      color: var(--color-text-light);
-    }
-
-    /* ── Sections ── */
-    section {
-      padding: 3rem 1.5rem;
-      background: var(--color-bg);
-    }
-    section:nth-child(even) {
-      background: var(--color-bg-alt);
-    }
     .container {
       max-width: var(--max-width);
       margin: 0 auto;
     }
-    h2 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--color-primary);
-      margin-bottom: 1.4rem;
-      border-left: 3px solid var(--color-accent);
-      padding-left: 0.75rem;
-      display: block;
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      color: var(--ink);
     }
-    p + p, p + ul, ul + p { margin-top: 0.8rem; }
-    ul { padding-left: 1.4rem; }
-    li { margin-bottom: 0.4rem; }
+
+    /* ── Hero / Header ── */
+    .hero {
+      background: var(--bg);
+      text-align: center;
+      padding: 3.5rem 1.5rem 2.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .hero-mark {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      margin-bottom: 1.75rem;
+      border-radius: 12px;
+    }
+    [data-theme="dark"] .hero-mark {
+      background: var(--text-light);
+    }
+    .hero h1 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.85rem;
+    }
+    .hero h1 .h1-lead {
+      display: inline-block;
+      font-size: 1.4rem;
+      font-weight: 500;
+      /* font-style: italic; */
+      color: var(--font-display);
+      margin-bottom: 0.2rem;
+    }
+    .hero .meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 1rem;
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+    .hero .meta strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .hero-rule {
+      height: 3px;
+      width: 56px;
+      margin: 1.5rem auto 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+      border-radius: 2px;
+    }
+
+    /* ── Sections ── */
+    section {
+      padding: 3.25rem 1.5rem;
+      background: var(--bg);
+    }
+    section:nth-child(even) {
+      background: var(--bg-panel-alt);
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    p + p, p + ul, ul + p { margin-top: 0.9rem; }
+    ul { padding-left: 1.3rem; }
+    li { margin-bottom: 0.45rem; }
+    strong { color: var(--ink); font-weight: 600; }
 
     /* ── CTA Button ── */
     .cta {
       display: inline-block;
-      margin-top: 1.4rem;
-      padding: 0.75rem 2.2rem;
-      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-warm));
-      color: #fff;
+      margin-top: 1.75rem;
+      padding: 0.8rem 1.9rem;
+      background: var(--ink);
+      color: var(--bg);
       text-decoration: none;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: opacity 0.2s, transform 0.2s;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.2s;
     }
     .cta:hover {
-      opacity: 0.88;
+      background: var(--accent);
       transform: translateY(-1px);
     }
 
-    /* ── Schedule Table ── */
-    .schedule-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-      font-size: 0.9rem;
+    /* ── Schedule: day rail ── */
+    .day-rail {
+      margin-top: 1.5rem;
+      border-left: 2px solid var(--border);
     }
-    .schedule-table th,
-    .schedule-table td {
-      border: 1px solid var(--color-border);
-      padding: 0.55rem 0.7rem;
-      text-align: left;
-      vertical-align: top;
+    .day-row {
+      position: relative;
+      padding: 0 0 1.5rem 1.5rem;
     }
-    .schedule-table thead th {
-      background: var(--color-primary);
-      color: #fff;
-      font-weight: 600;
+    .day-row:last-child {
+      padding-bottom: 0;
     }
-    .schedule-table tbody tr:nth-child(even) {
-      background: var(--color-bg-alt);
+    .day-row::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0.35rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg-panel-alt);
+    }
+    section:nth-child(odd) .day-row::before {
+      border-color: var(--bg);
+    }
+    .day-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      display: inline-block;
+      min-width: 6.5rem;
+      margin-right: 0.5rem;
+    }
+    .day-desc {
+      color: var(--text);
     }
 
     /* ── Team Grid ── */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
       gap: 2rem;
-      margin-top: 1.2rem;
+      margin-top: 1.5rem;
     }
     .team-member {
-      text-align: center;
+      text-align: left;
     }
     .team-member .avatar {
-      width: 100px;
-      height: 100px;
+      width: 84px;
+      height: 84px;
       border-radius: 50%;
-      background: var(--color-border);
-      margin: 0 auto 0.75rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      margin-bottom: 0.85rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--color-text-light);
-      font-size: 0.8rem;
+      color: var(--text-light);
+      font-size: 0.75rem;
       overflow: hidden;
     }
     .team-member h3 {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      color: var(--color-primary);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
     .team-member p {
-      font-size: 0.85rem;
-      color: var(--color-text-light);
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.5;
     }
 
     /* ── Dark Mode Toggle ── */
     #theme-toggle {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
+      top: 1.25rem;
+      right: 1.25rem;
       z-index: 100;
-      background: var(--color-bg);
-      color: var(--color-primary);
-      border: 1.5px solid var(--color-border);
+      background: var(--bg-panel);
+      color: var(--ink);
+      border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 0.4rem 0.9rem;
-      font-size: 1rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
       cursor: pointer;
       font-family: inherit;
       transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
     #theme-toggle:hover {
-      background: var(--color-bg-alt);
+      border-color: var(--accent);
+    }
+    #theme-toggle:focus-visible,
+    a:focus-visible,
+    .cta:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     /* ── Sponsors ── */
@@ -201,37 +263,38 @@
     .sponsors-grid {
       display: flex;
       justify-content: center;
-      gap: 4rem;
+      gap: 3.5rem;
       flex-wrap: wrap;
-      margin-top: 1.2rem;
+      margin-top: 1.5rem;
       align-items: flex-start;
     }
-    .sponsors-grid .sponsor-col {
-      text-align: center;
-    }
     .sponsors img {
-      max-height: 90px;
-      margin: 0.75rem 0;
+      max-height: 100px;
+      margin-top: 0.6rem;
       vertical-align: middle;
+      filter: grayscale(0.15);
     }
 
     /* ── Footer ── */
     footer {
       text-align: center;
-      padding: 1.75rem 1.5rem;
+      padding: 2rem 1.5rem;
       font-size: 0.85rem;
-      color: var(--color-text-light);
-      border-top: 1px solid var(--color-border);
-      background: var(--color-bg);
+      font-family: var(--font-mono);
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      background: var(--bg);
     }
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
-      .hero img.logo { max-width: 80%; }
-      .hero h1 { font-size: 1.3rem; }
-      .schedule-table { font-size: 0.8rem; }
-      .schedule-table th, .schedule-table td { padding: 0.4rem; }
+      .hero h1 { font-size: 1.4rem; }
+      .hero h1 .h1-lead { font-size: 0.9rem; }
       .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
     }
   </style>
 </head>
@@ -243,10 +306,15 @@
        1. HERO / HEADER
        ════════════════════════════════════════════ -->
   <header class="hero">
-    <img src="assets/AgentForge_logo_v8_final_red_colorful_gear.png" alt="AgentForge Logo" class="logo">
-    <h1>AgentForge: Hands-on Workshop on AI Agents as Scientific Research Assistants</h1>
-    <p class="subtitle">Nanyang Technological University, Singapore</p>
-    <p class="details">November 15 – 19, 2026 </p>
+    <div class="hero-inner">
+      <img src="assets/AgentForge_logo_v8_final_red_colorful_gear_nobg.png" alt="AgentForge" class="hero-mark">
+      <h1><span class="h1-lead">Hands-on Workshop on</span><br>AI Agents as Scientific Research Assistants</h1>
+      <div class="meta">
+        <span><strong>Nanyang Technological University</strong>, Singapore</span>
+        <span>November 15–19, 2026</span>
+      </div>
+      <div class="hero-rule"></div>
+    </div>
   </header>
 
   <!-- ════════════════════════════════════════════
@@ -257,19 +325,10 @@
       <h2>About the Workshop</h2>
 
       <p><strong>What is an AI Agent?</strong>
-        An AI agent goes beyond a standard chatbot. It is a software system that can use an AI model to pursue a goal, make decisions, plan steps, and interact with external tools or data sources. Unlike a standard chatbot, which primarily responds to user prompts, an AI agent can carry out multi-step tasks by selecting and using tools such as literature search engines, databases, code interpreters, or analysis scripts. Depending on its design, it may operate with varying levels of human oversight.</p>
+        An AI agent goes beyond a standard chatbot. It is a system that uses an AI model to pursue a goal, make decisions, plan steps, and use external tools or data sources — carrying out multi-step tasks with varying levels of human oversight.</p>
 
       <p><strong>Why AI Agents as Scientific Research Assistants?</strong>
-        Modern research generates overwhelming volumes of data and literature that no
-        individual can fully keep up with. AI agents can help by automating repetitive
-        tasks, analyzing large datasets, searching and synthesizing literature, generating
-        hypotheses, running simulations, and connecting knowledge across disciplines —
-        enabling researchers to work faster and more accurately. They also improve
-        reproducibility by systematically tracking methods, parameters, and results.
-        At the same time, human scientists remain essential: they provide critical judgment,
-        verify accuracy, interpret findings in context, and ensure that research is conducted
-        ethically and meaningfully. AI agents are most powerful not as replacements, but as
-        collaborative partners that amplify what researchers can achieve.</p>
+        Modern research generates more data and literature than any individual can keep up with. AI agents can automate repetitive tasks, analyze datasets, synthesize literature, and connect knowledge across disciplines — while human scientists provide the judgment, verification, and context that keep research accurate and meaningful.</p>
 
       <p><strong>What You Will Learn and Do</strong></p>
       <ul>
@@ -311,78 +370,33 @@
   <section id="schedule">
     <div class="container">
       <h2>Tentative Schedule</h2>
-      <p> November 15 – 19, 2026 <br>
-          Day 0 (Sunday): Arrival, reception dinner <br>
-          Day 1 (Monday): Keynote 1, Tutorial 1-2, Hackathon team forming <br>
-          Day 2 (Tuesday): Keynote 2-3, Tutorial 3-4, Hackathon ideation <br>
-          Day 3 (Wednesday): Tutorial 5, Hackathon <br>
-          Day 4 (Thursday): Hackthon, Final presentation, reception dinner, departure <br>
-          (Day 5 (Friday): Departure)
-      </p>
 
-      <!-- <p>The workshop spans four working days, progressing from foundational tutorials to an
-        applied group hackathon. Details are subject to change.</p> -->
-
-      <!-- <table class="schedule-table">
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Day 1 (Mon)</th>
-            <th>Day 2 (Tue)</th>
-            <th>Day 3 (Wed)</th>
-            <th>Day 4 (Thu)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>9:00</td>
-            <td>Opening &amp; Keynote 1</td>
-            <td>Keynote 2</td>
-            <td>Tutorial 5: Autonomous Agents</td>
-            <td>Hackathon</td>
-          </tr>
-          <tr>
-            <td>10:30</td>
-            <td colspan="4" style="text-align:center;">Coffee Break</td>
-          </tr>
-          <tr>
-            <td>11:00</td>
-            <td>Tutorial 1: From Chatbot to Agent</td>
-            <td>Tutorial 3: MCP &amp; Skills</td>
-            <td>Hackathon</td>
-            <td>Hackathon</td>
-          </tr>
-          <tr>
-            <td>12:30</td>
-            <td colspan="4" style="text-align:center;">Lunch</td>
-          </tr>
-          <tr>
-            <td>13:30</td>
-            <td>Tutorial 2: Agentic Memory &amp; RAG</td>
-            <td>Tutorial 4: Multi-Agent Orchestration</td>
-            <td>Hackathon</td>
-            <td>Prepare Presentations</td>
-          </tr>
-          <tr>
-            <td>15:00</td>
-            <td colspan="4" style="text-align:center;">Coffee Break</td>
-          </tr>
-          <tr>
-            <td>15:30</td>
-            <td>Team Formation</td>
-            <td>Hackathon Kick-off</td>
-            <td>Hackathon</td>
-            <td>Presentations &amp; Awards</td>
-          </tr>
-          <tr>
-            <td>18:00</td>
-            <td>Welcome Dinner</td>
-            <td>Dinner</td>
-            <td>Dinner</td>
-            <td>Farewell Dinner</td>
-          </tr>
-        </tbody>
-      </table> -->
+      <div class="day-rail">
+        <div class="day-row">
+          <span class="day-label">DAY 0 · SUN</span>
+          <span class="day-desc">Arrival, reception dinner</span>
+        </div>
+        <div class="day-row">
+          <span class="day-label">DAY 1 · MON</span>
+          <span class="day-desc">Keynote 1, tutorial 1–2, poster session, hackathon team forming</span>
+        </div>
+        <div class="day-row">
+          <span class="day-label">DAY 2 · TUE</span>
+          <span class="day-desc">Keynote 2–3, tutorial 3–4, hackathon ideation</span>
+        </div>
+        <div class="day-row">
+          <span class="day-label">DAY 3 · WED</span>
+          <span class="day-desc">Tutorial 5, hackathon</span>
+        </div>
+        <div class="day-row">
+          <span class="day-label">DAY 4 · THU</span>
+          <span class="day-desc">Hackathon, final presentations, reception dinner, departure</span>
+        </div>
+        <div class="day-row">
+          <span class="day-label">DAY 5 · FRI</span>
+          <span class="day-desc">Departure</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -394,39 +408,39 @@
       <h2>Organizing Team</h2>
       <div class="team-grid">
         <div class="team-member">
-          <div class="avatar">Photo</div>
+          <!-- <div class="avatar">Photo</div> -->
           <h3>Chengran Yang</h3>
-          <p>Schmidt AI in Science Postdoctoral Fellow, Nanyang Technological University (NTU)</p>
+          <p>Schmidt AI in Science Postdoctoral Fellow, <br> Nanyang Technological University (NTU)</p>
         </div>
         <div class="team-member">
-          <div class="avatar">Photo</div>
+          <!-- <div class="avatar">Photo</div> -->
           <h3>Shichuan Sun</h3>
-          <p>Schmidt AI in Science Postdoctoral Fellow, Nanyang Technological University (NTU)</p>
+          <p>Schmidt AI in Science Postdoctoral Fellow, <br> Nanyang Technological University (NTU)</p>
         </div>
         <div class="team-member">
-          <div class="avatar">Photo</div>
+          <!-- <div class="avatar">Photo</div> -->
           <h3>Nanta Sophonrat</h3>
           <p>Schmidt AI in Science Postdoctoral Fellow (Alum), University of Michigan (UM)</p>
-        </div> 
+        </div>
         <div class="team-member">
-          <div class="avatar">Photo</div>
+          <!-- <div class="avatar">Photo</div> -->
           <h3>Hailan Ma</h3>
-          <p>Schmidt AI in Science Postdoctoral Fellow, Nanyang Technological University (NTU)</p>
-        </div> 
+          <p>Schmidt AI in Science Postdoctoral Fellow, <br> Nanyang Technological University (NTU)</p>
+        </div>
         <div class="team-member">
-          <div class="avatar">Photo</div>
+          <!-- <div class="avatar">Photo</div> -->
           <h3>Dmytro Kosiachevskyi</h3>
-          <p>Schmidt AI in Science Postdoctoral Fellow, National University of Singapore (NUS)</p>
+          <p>Schmidt AI in Science Postdoctoral Fellow, <br> National University of Singapore (NUS)</p>
         </div>
         <div class="team-member">
-          <div class="avatar">Photo</div>
+          <!-- <div class="avatar">Photo</div> -->
           <h3>Naixu Guo</h3>
-          <p>Ph.D. candidate, National University of Singapore (NUS)</p>
+          <p>Ph.D. candidate, <br> National University of Singapore (NUS)</p>
         </div>
         <div class="team-member">
-          <div class="avatar">Photo</div>
+          <!-- <div class="avatar">Photo</div> -->
           <h3>Yukun Xue</h3>
-          <p>Master's Candidate, Xidian University</p>
+          <p>Master's candidate, <br> Xidian University</p>
         </div>
       </div>
     </div>
