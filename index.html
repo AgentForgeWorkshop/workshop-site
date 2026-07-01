@@ -4,24 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgentForge — Hands-on Workshop on AI Agents for Scientific Research Assistants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --color-primary: #1a3a5c;
-      --color-accent: #2c7be5;
-      --color-text: #333;
-      --color-text-light: #666;
       --color-bg: #ffffff;
-      --color-section-alt: #f7f9fc;
-      --color-border: #e2e8f0;
-      --max-width: 900px;
+      --color-bg-alt: #f5f4f2;
+      --color-primary: #1a2b5e;
+      --color-accent: #e8202a;
+      --color-accent-warm: #f47d20;
+      --color-text: #2d2d2d;
+      --color-text-light: #6b7280;
+      --color-border: #e5e1db;
+      --max-width: 860px;
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #1a1f2e;
+      --color-bg-alt: #212740;
+      --color-primary: #e8f0ff;
+      --color-accent: #f4523a;
+      --color-accent-warm: #f47d20;
+      --color-text: #d1d5e0;
+      --color-text-light: #8892a4;
+      --color-border: #2e3650;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'DM Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
       color: var(--color-text);
-      line-height: 1.7;
+      line-height: 1.75;
       background: var(--color-bg);
     }
 
@@ -196,7 +211,7 @@
        1. HERO / HEADER
        ════════════════════════════════════════════ -->
   <header class="hero">
-    <img src="assets/AgentForge_logo_v8_whitebg.png" alt="AgentForge Logo" class="logo">
+    <img src="assets/AgentForge_logo_v8_final_red_colorful_gear.png" alt="AgentForge Logo" class="logo">
     <h1>AgentForge: Hands-on Workshop on AI Agents as Scientific Research Assistants</h1>
     <p class="subtitle">Nanyang Technological University, Singapore</p>
     <p class="details">November 15 – 19, 2026 </p>
