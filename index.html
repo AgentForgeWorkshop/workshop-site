@@ -15,8 +15,8 @@
       --ink: #26314f;
       --text: #47443e;
       --text-light: #8a8578;
-      --accent: #b8542e;
-      --accent-warm: #c97a3a;
+      --accent: #D71440;
+      --accent-warm: #F1B82D;
       --border: #e2ddd2;
       --max-width: 730px;
       --font-display: 'Fraunces', Georgia, serif;
@@ -31,7 +31,7 @@
       --ink: #dbe1f0;
       --text: #c7c3ba;
       --text-light: #8b8779;
-      --accent: #d1734a;
+      --accent: #cf4b12;
       --accent-warm: #d99257;
       --border: #333748;
     }
@@ -374,23 +374,23 @@
       <div class="day-rail">
         <div class="day-row">
           <span class="day-label">DAY 0 · SUN</span>
-          <span class="day-desc">Arrival, reception dinner</span>
+          <span class="day-desc">Arrival, Reception dinner</span>
         </div>
         <div class="day-row">
           <span class="day-label">DAY 1 · MON</span>
-          <span class="day-desc">Keynote 1, tutorial 1–2, poster session, hackathon team forming</span>
+          <span class="day-desc">Keynote 1, Tutorial 1–2, Poster session, Hackathon team forming</span>
         </div>
         <div class="day-row">
           <span class="day-label">DAY 2 · TUE</span>
-          <span class="day-desc">Keynote 2–3, tutorial 3–4, hackathon ideation</span>
+          <span class="day-desc">Keynote 2–3, Tutorial 3–4, Hackathon ideation</span>
         </div>
         <div class="day-row">
           <span class="day-label">DAY 3 · WED</span>
-          <span class="day-desc">Tutorial 5, hackathon</span>
+          <span class="day-desc">Tutorial 5, Hackathon</span>
         </div>
         <div class="day-row">
           <span class="day-label">DAY 4 · THU</span>
-          <span class="day-desc">Hackathon, final presentations, reception dinner, departure</span>
+          <span class="day-desc">Hackathon, Final presentations, Reception dinner, Departure</span>
         </div>
         <div class="day-row">
           <span class="day-label">DAY 5 · FRI</span>
@@ -479,8 +479,7 @@
   <script>
     const toggle = document.getElementById('theme-toggle');
     const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = stored ? stored === 'dark' : prefersDark;
+    const isDark = stored === 'dark';
 
     if (isDark) {
       document.body.setAttribute('data-theme', 'dark');
