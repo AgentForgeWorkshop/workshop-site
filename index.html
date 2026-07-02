@@ -75,8 +75,14 @@
       margin-bottom: 1.75rem;
       border-radius: 12px;
     }
-    [data-theme="dark"] .hero-mark {
-      background: var(--text-light);
+    .hero-mark-dark {
+      display: none;
+    }
+    [data-theme="dark"] .hero-mark-light {
+      display: none;
+    }
+    [data-theme="dark"] .hero-mark-dark {
+      display: inline-block;
     }
     .hero h1 {
       font-size: 1.7rem;
@@ -307,7 +313,8 @@
        ════════════════════════════════════════════ -->
   <header class="hero">
     <div class="hero-inner">
-      <img src="assets/AgentForge_logo_v8_final_red_colorful_gear_nobg.png" alt="AgentForge" class="hero-mark">
+      <img src="assets/AgentForge_logo_v8_final_red_colorful_gear_nobg.png" alt="AgentForge" class="hero-mark hero-mark-light">
+      <img src="assets/AgentForge_logo_v8_final_for_darkmode_nobg.png" alt="AgentForge" class="hero-mark hero-mark-dark">
       <h1><span class="h1-lead">Hands-on Workshop on</span><br>AI Agents as Scientific Research Assistants</h1>
       <div class="meta">
         <span><strong>Nanyang Technological University</strong>, Singapore</span>
