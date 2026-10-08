@@ -18,6 +18,9 @@
       --accent: #D71440;
       --accent-warm: #F1B82D;
       --border: #e2ddd2;
+      --ev-keynote: #e3eedd;
+      --ev-tutorial: #dfe9f3;
+      --ev-hack: #f8e8d3;
       --max-width: 730px;
       --font-display: 'Fraunces', Georgia, serif;
       --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -34,6 +37,9 @@
       --accent: #cf4b12;
       --accent-warm: #d99257;
       --border: #333748;
+      --ev-keynote: #26382f;
+      --ev-tutorial: #25344a;
+      --ev-hack: #403329;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -201,9 +207,14 @@
     .schedule-days { margin-top: 1.5rem; display: grid; gap: 2rem; }
     .schedule-day h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
     .schedule-day .day-label { min-width: 0; margin-right: 0.6rem; }
-    .agenda { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .agenda { width: calc(100% + 1.2rem); margin-left: -0.6rem; border-collapse: collapse; font-size: 0.95rem; }
     .agenda td { padding: 0.4rem 0; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
     .agenda td.time { width: 9rem; padding-right: 1rem; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-light); white-space: nowrap; }
+    .agenda tr.ev-keynote { background: var(--ev-keynote); }
+    .agenda tr.ev-tutorial { background: var(--ev-tutorial); }
+    .agenda tr.ev-hack { background: var(--ev-hack); }
+    .agenda td { padding-left: 0.6rem; padding-right: 0.6rem; }
+    .agenda td.time { padding-right: 0.6rem; width: 9.6rem; }
 
     /* ── Team Grid ── */
     .team-grid {
@@ -376,6 +387,9 @@
         <span><strong>Nanyang Technological University</strong>, Singapore</span>
         <span>November 15–19, 2026</span>
       </div>
+      <div class="meta">
+        <span><strong>Venue:</strong> <a href="https://maps.app.goo.gl/nZfQD1kTWKDHVmoJ7" target="_blank" rel="noopener">Nanyang Executive Centre (NEC)</a></span>
+      </div>
       <div class="hero-rule"></div>
     </div>
   </header>
@@ -494,13 +508,13 @@
           <h3><span class="day-label">DAY 1</span> Monday, 16 November</h3>
           <table class="agenda">
             <tr><td class="time">9:00–9:30</td><td>Opening remarks</td></tr>
-            <tr><td class="time">9:30–10:20</td><td>Keynote 1: Prof. Bo An, Introduction to AI Agents for Science</td></tr>
+            <tr class="ev-keynote"><td class="time">9:30–10:20</td><td>Keynote 1: Prof. Bo An, Introduction to AI Agents for Science</td></tr>
             <tr><td class="time">10:20–10:40</td><td>Coffee break</td></tr>
-            <tr><td class="time">10:40–12:05</td><td>Tutorial 1: From Chatbot to Agent</td></tr>
+            <tr class="ev-tutorial"><td class="time">10:40–12:05</td><td>Tutorial 1: From Chatbot to Agent</td></tr>
             <tr><td class="time">12:05–13:05</td><td>Lunch</td></tr>
-            <tr><td class="time">13:05–14:30</td><td>Tutorial 2: Agentic memory</td></tr>
+            <tr class="ev-tutorial"><td class="time">13:05–14:30</td><td>Tutorial 2: Agentic memory</td></tr>
             <tr><td class="time">14:30–14:35</td><td>Coffee break &amp; Poster session start</td></tr>
-            <tr><td class="time">14:35–16:00</td><td>Poster session</td></tr>
+            <tr class="ev-hack"><td class="time">14:35–16:00</td><td>Poster session</td></tr>
             <tr><td class="time">16:00–17:00</td><td>Travel to Chinatown</td></tr>
             <tr><td class="time">17:00–18:15</td><td>Dinner</td></tr>
             <tr><td class="time">18:15–19:30</td><td>Cultural walk guided tour</td></tr>
@@ -510,14 +524,14 @@
         <div class="schedule-day">
           <h3><span class="day-label">DAY 2</span> Tuesday, 17 November</h3>
           <table class="agenda">
-            <tr><td class="time">9:00–9:45</td><td>Keynote 2: Dr. Zekun Ren, Application of Agentic AI in materials science</td></tr>
-            <tr><td class="time">9:45–10:30</td><td>Keynote 3: Mr. Volodymyr Iermolaiev, Agentic AI in healthcare</td></tr>
+            <tr class="ev-keynote"><td class="time">9:00–9:45</td><td>Keynote 2: Dr. Zekun Ren, Application of Agentic AI in materials science</td></tr>
+            <tr class="ev-keynote"><td class="time">9:45–10:30</td><td>Keynote 3: Mr. Volodymyr Iermolaiev, Agentic AI in healthcare</td></tr>
             <tr><td class="time">10:30–10:50</td><td>Coffee break</td></tr>
-            <tr><td class="time">10:50–12:20</td><td>Tutorial 3: Agents on Platforms, MCP &amp; Skills</td></tr>
+            <tr class="ev-tutorial"><td class="time">10:50–12:20</td><td>Tutorial 3: Agents on Platforms, MCP &amp; Skills</td></tr>
             <tr><td class="time">12:20–13:20</td><td>Lunch</td></tr>
-            <tr><td class="time">13:20–14:50</td><td>Tutorial 4: Multi-agent</td></tr>
+            <tr class="ev-tutorial"><td class="time">13:20–14:50</td><td>Tutorial 4: Multi-agent</td></tr>
             <tr><td class="time">14:50–15:10</td><td>Coffee break</td></tr>
-            <tr><td class="time">15:10–17:00</td><td>Hackathon 1: team forming, brainstorming</td></tr>
+            <tr class="ev-hack"><td class="time">15:10–17:00</td><td>Hackathon 1: team forming, brainstorming</td></tr>
             <tr><td class="time">17:00–18:00</td><td>Free time / Travel to dinner</td></tr>
             <tr><td class="time">18:00–19:30</td><td>Dinner</td></tr>
           </table>
@@ -525,13 +539,13 @@
         <div class="schedule-day">
           <h3><span class="day-label">DAY 3</span> Wednesday, 18 November</h3>
           <table class="agenda">
-            <tr><td class="time">9:00–10:30</td><td>Tutorial 5: Evaluation</td></tr>
+            <tr class="ev-tutorial"><td class="time">9:00–10:30</td><td>Tutorial 5: Evaluation</td></tr>
             <tr><td class="time">10:30–10:50</td><td>Coffee break</td></tr>
-            <tr><td class="time">10:50–12:20</td><td>Hackathon 2: finalize plan, 1–2 min (1 slide) presentation on topics</td></tr>
+            <tr class="ev-hack"><td class="time">10:50–12:20</td><td>Hackathon 2: finalize plan, 1–2 min (1 slide) presentation on topics</td></tr>
             <tr><td class="time">12:20–13:20</td><td>Lunch</td></tr>
-            <tr><td class="time">13:20–14:50</td><td>Hackathon 3: think about evaluation</td></tr>
+            <tr class="ev-hack"><td class="time">13:20–14:50</td><td>Hackathon 3: think about evaluation</td></tr>
             <tr><td class="time">14:50–15:10</td><td>Coffee break</td></tr>
-            <tr><td class="time">15:10–16:30</td><td>Hackathon 4: 1–2 min (1 slide) presentation on evaluation plan and progress</td></tr>
+            <tr class="ev-hack"><td class="time">15:10–16:30</td><td>Hackathon 4: 1–2 min (1 slide) presentation on evaluation plan and progress</td></tr>
             <tr><td class="time">16:30–17:30</td><td>Travel to Lau Pa Sat</td></tr>
             <tr><td class="time">17:30–19:00</td><td>Dinner at Lau Pa Sat</td></tr>
             <tr><td class="time">19:00–19:45</td><td>Walk</td></tr>
@@ -541,13 +555,13 @@
         <div class="schedule-day">
           <h3><span class="day-label">DAY 4</span> Thursday, 19 November</h3>
           <table class="agenda">
-            <tr><td class="time">9:00–10:30</td><td>Hackathon 5: work time</td></tr>
+            <tr class="ev-hack"><td class="time">9:00–10:30</td><td>Hackathon 5: work time</td></tr>
             <tr><td class="time">10:30–10:50</td><td>Coffee break</td></tr>
-            <tr><td class="time">10:50–12:20</td><td>Hackathon 6: prepare demo</td></tr>
+            <tr class="ev-hack"><td class="time">10:50–12:20</td><td>Hackathon 6: prepare demo</td></tr>
             <tr><td class="time">12:20–13:20</td><td>Lunch</td></tr>
-            <tr><td class="time">13:20–14:50</td><td>Hackathon 7: prepare presentation</td></tr>
+            <tr class="ev-hack"><td class="time">13:20–14:50</td><td>Hackathon 7: prepare presentation</td></tr>
             <tr><td class="time">14:50–15:10</td><td>Coffee break</td></tr>
-            <tr><td class="time">15:10–17:00</td><td>Presentations, Awards and Closing</td></tr>
+            <tr class="ev-hack"><td class="time">15:10–17:00</td><td>Presentations, Awards and Closing</td></tr>
             <tr><td class="time">17:00–18:00</td><td>Free time / Travel to dinner</td></tr>
             <tr><td class="time">18:00–19:30</td><td>Dinner</td></tr>
           </table>
