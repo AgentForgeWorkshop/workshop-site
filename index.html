@@ -197,6 +197,14 @@
       color: var(--text);
     }
 
+    /* ── Schedule: daily agenda ── */
+    .schedule-days { margin-top: 1.5rem; display: grid; gap: 2rem; }
+    .schedule-day h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .schedule-day .day-label { min-width: 0; margin-right: 0.6rem; }
+    .agenda { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .agenda td { padding: 0.4rem 0; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .agenda td.time { width: 9rem; padding-right: 1rem; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-light); white-space: nowrap; }
+
     /* ── Team Grid ── */
     .team-grid {
       display: grid;
@@ -221,6 +229,11 @@
       font-size: 0.75rem;
       overflow: hidden;
     }
+    .team-member .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .team-member h3 {
       font-size: 1.05rem;
       font-weight: 600;
@@ -231,6 +244,46 @@
       color: var(--text-light);
       line-height: 1.5;
     }
+
+    /* ── Keynote Speakers ── */
+    .keynote-list {
+      display: grid;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .keynote {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .keynote img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 1px solid var(--border);
+      background: var(--bg-panel);
+    }
+    .keynote h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+    .keynote .role {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+    }
+    .keynote .bio {
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .subhead { font-size: 1.1rem; margin-top: 1.25rem; }
+    .tutorial-tba { margin-top: 2rem; }
 
     /* ── Dark Mode Toggle ── */
     #theme-toggle {
@@ -297,6 +350,9 @@
       .hero h1 { font-size: 1.4rem; }
       .hero h1 .h1-lead { font-size: 0.9rem; }
       .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .keynote { grid-template-columns: 1fr; gap: 1rem; }
+      .agenda td.time { width: 7.5rem; padding-right: 0.5rem; }
+      .keynote img { width: 96px; height: 96px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -341,13 +397,12 @@
       <ul>
         <li>Understand the core architecture of AI agents and their applications in scientific research</li>
         <li>Explore core agent components, including memory, tools, skills, and multi-agent systems</li>
-        <li>Build prototype AI research assistants using coding and low-code platforms</li>
+        <li>Build prototype AI research assistants</li>
         <li>Develop evaluation criteria to assess the accuracy and trustworthiness of their agents</li>
         <li>Collaborate in a hackathon to solve domain-specific research challenges</li>
       </ul>
 
-      <!-- EDIT: Replace # with the actual registration URL when ready -->
-      <a href="https://forms.gle/M2jKL1HN7xQY2fu78" class="cta">Register Now</a>
+      <!-- <a href="https://github.com/AgentForgeWorkshop" class="cta" target="_blank" rel="noopener noreferrer">View on GitHub</a> -->
     </div>
   </section>
 
@@ -357,17 +412,67 @@
   <section id="speakers">
     <div class="container">
       <h2>Speakers &amp; Tutorial Leads</h2>
-      <p>To be announced. Stay tuned!</p>
+      <h3 class="subhead">Keynote Speakers</h3>
+      <div class="keynote-list">
+        <article class="keynote">
+          <img src="assets/Keynotes_photos/BoAn.jpg" alt="Portrait of Prof. Bo An" loading="lazy">
+          <div>
+            <h3>Prof. Bo An</h3>
+            <p class="role">President's Chair Professor and Head of Division of Artificial Intelligence, College of Computing and Data Science, NTU</p>
+            <p class="bio">Prof. Bo An holds a President’s Chair Professorship at Nanyang Technological University (NTU), Singapore, where he heads the Division of Artificial Intelligence within the College of Computing and Data Science. His research spans multi-agent systems, computational game theory, reinforcement learning and optimisation, with applications in security, sustainability and resource allocation. He is a Fellow of the Association for the Advancement of Artificial Intelligence (AAAI) and Editor-in-Chief of IEEE Intelligent Systems.</p>
+          </div>
+        </article>
+        <article class="keynote">
+          <img src="assets/Keynotes_photos/ZekunRen.png" alt="Portrait of Dr. Zekun Ren" loading="lazy">
+          <div>
+            <h3>Dr. Zekun Ren</h3>
+            <p class="role">Project Leader at BEARS and Co-founder of PUDA</p>
+            <p class="bio">Dr. Zekun (Danny) Ren is a Project Leader at the Berkeley Education Alliance for Research in Singapore (BEARS) consortium and Co-founder of PUDA, an LLM and agentic AI startup. His work focuses on artificial intelligence for scientific discovery, autonomous experimentation, and materials innovation, with particular interests in agentic AI, machine learning, and self-driving laboratories. He has extensive experience developing AI-enabled approaches that bridge advanced computational methods with real-world experimental and scientific applications.</p>
+          </div>
+        </article>
+        <article class="keynote">
+          <img src="assets/Keynotes_photos/Volodymyr_Iermolaiev.jpeg" alt="Portrait of Mr. Volodymyr Iermolaiev" loading="lazy">
+          <div>
+            <h3>Mr. Volodymyr Iermolaiev</h3>
+            <p class="role">Co-founder and CEO of Ajentik AI, Singapore</p>
+            <p class="bio">Mr. Volodymyr “Myr” Iermolaiev is Co-founder and CEO of Ajentik AI, a Singapore-based company developing agentic AI solutions for healthcare coordination. With a background in enterprise software and AI systems, he focuses on helping patients, families and care teams stay connected during the transition from hospital to home. He leads Ajentik AI’s work in developing healthcare coordination solutions for patients, families and care teams.</p>
+          </div>
+        </article>
+      </div>
 
-      <!-- EDIT: Uncomment and duplicate the block below for each confirmed speaker.
+      <h3 class="subhead">Tutorial Leads</h3>
       <div class="team-grid">
         <div class="team-member">
-          <div class="avatar">Photo</div>
-          <h3>Speaker Name</h3>
-          <p>Affiliation</p>
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Shichuan.jpg" alt="Portrait of Shichuan Sun" loading="lazy"></div>
+          <h3>Shichuan Sun</h3>
+          <p>Schmidt AI in Science Postdoctoral Fellow, <br> Nanyang Technological University (NTU)</p>
+        </div>
+        <div class="team-member">
+          <div class="avatar" aria-hidden="true">YX</div>
+          <h3>Yukun Xue</h3>
+          <p>Master's candidate, <br> Xidian University</p>
+        </div>
+        <div class="team-member">
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Dmytro_400.jpg" alt="Portrait of Dmytro Kosiachevskyi" loading="lazy"></div>
+          <h3>Dmytro Kosiachevskyi</h3>
+          <p>Schmidt AI in Science Postdoctoral Fellow, <br> National University of Singapore (NUS)</p>
+        </div>
+        <div class="team-member">
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Chengran.jpg" alt="Portrait of Chengran Yang" loading="lazy"></div>
+          <h3>Chengran Yang</h3>
+          <p>Schmidt AI in Science Postdoctoral Fellow, <br> Nanyang Technological University (NTU)</p>
+        </div>
+        <div class="team-member">
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Martin.jpg" alt="Portrait of Martin Hoffmann Petersen" loading="lazy"></div>
+          <h3>Martin Hoffmann Petersen</h3>
+          <p>NTU AI4X Postdoctoral Fellow, <br> Nanyang Technological University (NTU)</p>
+        </div>
+        <div class="team-member">
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Nanta_400.jpg" alt="Portrait of Nanta Sophonrat" loading="lazy"></div>
+          <h3>Nanta Sophonrat</h3>
+          <p>Schmidt AI in Science Postdoctoral Fellow (Alum), University of Michigan (UM)</p>
         </div>
       </div>
-      -->
     </div>
   </section>
 
@@ -378,30 +483,74 @@
     <div class="container">
       <h2>Tentative Schedule</h2>
 
-      <div class="day-rail">
-        <div class="day-row">
-          <span class="day-label">DAY 0 · SUN</span>
-          <span class="day-desc">Arrival, Reception dinner</span>
+      <div class="schedule-days">
+        <div class="schedule-day">
+          <h3><span class="day-label">DAY 0</span> Sunday, 15 November</h3>
+          <table class="agenda">
+            <tr><td class="time">17:00–19:30</td><td>Reception dinner</td></tr>
+          </table>
         </div>
-        <div class="day-row">
-          <span class="day-label">DAY 1 · MON</span>
-          <span class="day-desc">Keynote 1, Tutorial 1–2, Poster session, Hackathon team forming</span>
+        <div class="schedule-day">
+          <h3><span class="day-label">DAY 1</span> Monday, 16 November</h3>
+          <table class="agenda">
+            <tr><td class="time">9:00–9:30</td><td>Opening remarks</td></tr>
+            <tr><td class="time">9:30–10:20</td><td>Keynote 1: Prof. Bo An, Introduction to AI Agents for Science</td></tr>
+            <tr><td class="time">10:20–10:40</td><td>Coffee break</td></tr>
+            <tr><td class="time">10:40–12:05</td><td>Tutorial 1: From Chatbot to Agent</td></tr>
+            <tr><td class="time">12:05–13:05</td><td>Lunch</td></tr>
+            <tr><td class="time">13:05–14:30</td><td>Tutorial 2: Agentic memory</td></tr>
+            <tr><td class="time">14:30–14:35</td><td>Coffee break &amp; Poster session start</td></tr>
+            <tr><td class="time">14:35–16:00</td><td>Poster session</td></tr>
+            <tr><td class="time">16:00–17:00</td><td>Travel by bus to Chinatown</td></tr>
+            <tr><td class="time">17:00–18:15</td><td>Dinner</td></tr>
+            <tr><td class="time">18:15–19:30</td><td>Cultural walk guided tour</td></tr>
+            <tr><td class="time">19:30–20:30</td><td>Bus back to NEC</td></tr>
+          </table>
         </div>
-        <div class="day-row">
-          <span class="day-label">DAY 2 · TUE</span>
-          <span class="day-desc">Keynote 2–3, Tutorial 3–4, Hackathon ideation</span>
+        <div class="schedule-day">
+          <h3><span class="day-label">DAY 2</span> Tuesday, 17 November</h3>
+          <table class="agenda">
+            <tr><td class="time">9:00–9:45</td><td>Keynote 2: Dr. Zekun Ren, Application of Agentic AI in materials science</td></tr>
+            <tr><td class="time">9:45–10:30</td><td>Keynote 3: Mr. Volodymyr Iermolaiev, Agentic AI in healthcare</td></tr>
+            <tr><td class="time">10:30–10:50</td><td>Coffee break</td></tr>
+            <tr><td class="time">10:50–12:20</td><td>Tutorial 3: Agents on Platforms, MCP &amp; Skills</td></tr>
+            <tr><td class="time">12:20–13:20</td><td>Lunch</td></tr>
+            <tr><td class="time">13:20–14:50</td><td>Tutorial 4: Multi-agent</td></tr>
+            <tr><td class="time">14:50–15:10</td><td>Coffee break</td></tr>
+            <tr><td class="time">15:10–17:00</td><td>Hackathon 1: team forming, brainstorming</td></tr>
+            <tr><td class="time">17:00–18:00</td><td>Free time / Travel to dinner</td></tr>
+            <tr><td class="time">18:00–19:30</td><td>Dinner</td></tr>
+          </table>
         </div>
-        <div class="day-row">
-          <span class="day-label">DAY 3 · WED</span>
-          <span class="day-desc">Tutorial 5, Hackathon</span>
+        <div class="schedule-day">
+          <h3><span class="day-label">DAY 3</span> Wednesday, 18 November</h3>
+          <table class="agenda">
+            <tr><td class="time">9:00–10:30</td><td>Tutorial 5: Evaluation</td></tr>
+            <tr><td class="time">10:30–10:50</td><td>Coffee break</td></tr>
+            <tr><td class="time">10:50–12:20</td><td>Hackathon 2: finalize plan, 1–2 min (1 slide) presentation on topics</td></tr>
+            <tr><td class="time">12:20–13:20</td><td>Lunch</td></tr>
+            <tr><td class="time">13:20–14:50</td><td>Hackathon 3: think about evaluation</td></tr>
+            <tr><td class="time">14:50–15:10</td><td>Coffee break</td></tr>
+            <tr><td class="time">15:10–16:30</td><td>Hackathon 4: 1–2 min (1 slide) presentation on evaluation plan and progress</td></tr>
+            <tr><td class="time">16:30–17:30</td><td>Travel by bus to Lau Pa Sat</td></tr>
+            <tr><td class="time">17:30–19:00</td><td>Dinner at Lau Pa Sat</td></tr>
+            <tr><td class="time">19:00–19:45</td><td>Walk</td></tr>
+            <tr><td class="time">19:45–20:45</td><td>Bus to NEC</td></tr>
+          </table>
         </div>
-        <div class="day-row">
-          <span class="day-label">DAY 4 · THU</span>
-          <span class="day-desc">Hackathon, Final presentations, Reception dinner, Departure</span>
-        </div>
-        <div class="day-row">
-          <span class="day-label">DAY 5 · FRI</span>
-          <span class="day-desc">Departure</span>
+        <div class="schedule-day">
+          <h3><span class="day-label">DAY 4</span> Thursday, 19 November</h3>
+          <table class="agenda">
+            <tr><td class="time">9:00–10:30</td><td>Hackathon 5: work time</td></tr>
+            <tr><td class="time">10:30–10:50</td><td>Coffee break</td></tr>
+            <tr><td class="time">10:50–12:20</td><td>Hackathon 6: prepare demo</td></tr>
+            <tr><td class="time">12:20–13:20</td><td>Lunch</td></tr>
+            <tr><td class="time">13:20–14:50</td><td>Hackathon 7: prepare presentation</td></tr>
+            <tr><td class="time">14:50–15:10</td><td>Coffee break</td></tr>
+            <tr><td class="time">15:10–17:00</td><td>Presentations, Awards and Closing</td></tr>
+            <tr><td class="time">17:00–18:00</td><td>Free time / Travel to dinner</td></tr>
+            <tr><td class="time">18:00–19:30</td><td>Dinner</td></tr>
+          </table>
         </div>
       </div>
     </div>
@@ -415,37 +564,32 @@
       <h2>Organizing Team</h2>
       <div class="team-grid">
         <div class="team-member">
-          <!-- <div class="avatar">Photo</div> -->
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Chengran.jpg" alt="Portrait of Chengran Yang" loading="lazy"></div>
           <h3>Chengran Yang</h3>
           <p>Schmidt AI in Science Postdoctoral Fellow, <br> Nanyang Technological University (NTU)</p>
         </div>
         <div class="team-member">
-          <!-- <div class="avatar">Photo</div> -->
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Shichuan.jpg" alt="Portrait of Shichuan Sun" loading="lazy"></div>
           <h3>Shichuan Sun</h3>
           <p>Schmidt AI in Science Postdoctoral Fellow, <br> Nanyang Technological University (NTU)</p>
         </div>
         <div class="team-member">
-          <!-- <div class="avatar">Photo</div> -->
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Nanta_400.jpg" alt="Portrait of Nanta Sophonrat" loading="lazy"></div>
           <h3>Nanta Sophonrat</h3>
           <p>Schmidt AI in Science Postdoctoral Fellow (Alum), University of Michigan (UM)</p>
         </div>
         <div class="team-member">
-          <!-- <div class="avatar">Photo</div> -->
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Hailan_400.jpg" alt="Portrait of Hailan Ma" loading="lazy"></div>
           <h3>Hailan Ma</h3>
           <p>Schmidt AI in Science Postdoctoral Fellow, <br> Nanyang Technological University (NTU)</p>
         </div>
         <div class="team-member">
-          <!-- <div class="avatar">Photo</div> -->
+          <div class="avatar"><img src="assets/Tutorial_lead_organizers_photos/Dmytro_400.jpg" alt="Portrait of Dmytro Kosiachevskyi" loading="lazy"></div>
           <h3>Dmytro Kosiachevskyi</h3>
           <p>Schmidt AI in Science Postdoctoral Fellow, <br> National University of Singapore (NUS)</p>
         </div>
         <div class="team-member">
-          <!-- <div class="avatar">Photo</div> -->
-          <h3>Naixu Guo</h3>
-          <p>Ph.D. candidate, <br> National University of Singapore (NUS)</p>
-        </div>
-        <div class="team-member">
-          <!-- <div class="avatar">Photo</div> -->
+          <div class="avatar" aria-hidden="true">YX</div>
           <h3>Yukun Xue</h3>
           <p>Master's candidate, <br> Xidian University</p>
         </div>
