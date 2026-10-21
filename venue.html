@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venue — AgentForge Workshop at NTU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+:root {
+      --bg: #f7f5f1;
+      --bg-panel: #ffffff;
+      --bg-panel-alt: #eef0ec;
+      --ink: #26314f;
+      --text: #47443e;
+      --text-light: #8a8578;
+      --accent: #D71440;
+      --accent-warm: #F1B82D;
+      --border: #e2ddd2;
+      --ev-keynote: #e3eedd;
+      --ev-tutorial: #dfe9f3;
+      --ev-hack: #f8e8d3;
+      --max-width: 730px;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #1b1e26;
+      --bg-panel: #21252f;
+      --bg-panel-alt: #262a35;
+      --ink: #dbe1f0;
+      --text: #c7c3ba;
+      --text-light: #8b8779;
+      --accent: #cf4b12;
+      --accent-warm: #d99257;
+      --border: #333748;
+      --ev-keynote: #26382f;
+      --ev-tutorial: #25344a;
+      --ev-hack: #403329;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      color: var(--ink);
+    }
+
+    /* ── Sections ── */
+    section {
+      padding: 3.25rem 1.5rem;
+      background: var(--bg);
+    }
+    section:nth-child(even) {
+      background: var(--bg-panel-alt);
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    p + p, p + ul, ul + p { margin-top: 0.9rem; }
+    ul { padding-left: 1.3rem; }
+    li { margin-bottom: 0.45rem; }
+    strong { color: var(--ink); font-weight: 600; }
+
+    /* ── CTA Button ── */
+    .cta {
+      display: inline-block;
+      margin-top: 1.75rem;
+      padding: 0.8rem 1.9rem;
+      background: var(--ink);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cta:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* ── Dark Mode Toggle ── */
+    #theme-toggle {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      z-index: 100;
+      background: var(--bg-panel);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      width: 2.4rem;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    #theme-toggle:hover {
+      border-color: var(--accent);
+    }
+    #theme-toggle:focus-visible,
+    a:focus-visible,
+    .cta:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    
+    /* ── Nav menu ── */
+    html { scroll-behavior: smooth; }
+    #menu-toggle {
+      position: fixed; top: 1.25rem; left: 1.25rem; z-index: 100;
+      background: var(--bg-panel); color: var(--ink);
+      border: 1px solid var(--border); border-radius: 999px;
+      width: 2.4rem; height: 2.4rem; display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; line-height: 1; cursor: pointer; font-family: inherit;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    #menu-toggle:hover, #menu-toggle[aria-expanded="true"] { border-color: var(--accent); }
+    #menu-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    #site-menu {
+      position: fixed; top: 4rem; left: 1.25rem; z-index: 100; min-width: 11rem;
+      background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px;
+      padding: 0.4rem; box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    #site-menu[hidden] { display: none; }
+    #site-menu a {
+      display: block; padding: 0.45rem 0.8rem; border-radius: 5px;
+      color: var(--ink); text-decoration: none; font-size: 0.95rem; line-height: 1.4;
+    }
+    #site-menu a:hover, #site-menu a:focus-visible { background: var(--bg-panel-alt); color: var(--accent); outline: none; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    /* ── Venue page ── */
+    .venue-head {
+      text-align: center;
+      padding: 3rem 1.5rem 2.25rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .venue-head h1 { font-size: 1.7rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+    .venue-head p { color: var(--text-light); font-size: 0.95rem; }
+    a { color: var(--accent); }
+    section h2 { font-size: 1.35rem; }
+    .rooms { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.25rem; }
+    .room img, .room .ph {
+      width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+      border-radius: 6px; border: 1px solid var(--border); background: var(--bg-panel);
+    }
+    .room .ph { display: none; align-items: center; justify-content: center; color: var(--text-light); font-size: 0.85rem; text-align: center; padding: 1rem; }
+    .room figcaption { margin-top: 0.6rem; font-size: 0.9rem; line-height: 1.5; color: var(--text-light); }
+    .room figcaption strong { display: block; color: var(--ink); }
+    .room figcaption .room-name { font-weight: 800; }
+    .map-wrap { margin-top: 1.25rem; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--bg-panel); }
+    .map-wrap iframe { display: block; width: 100%; height: 320px; border: 0; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+    .btn-row .cta { margin-top: 0; }
+    .facts { list-style: none; padding: 0; }
+    .facts li { margin-bottom: 0.35rem; }
+    @media (max-width: 640px) {
+      .rooms { grid-template-columns: 1fr; }
+      .map-wrap iframe { height: 260px; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+
+  <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">☰</button>
+  <nav id="site-menu" aria-label="Site sections" hidden>
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#speakers">Speakers</a>
+    <a href="index.html#schedule">Schedule</a>
+    <a href="index.html#team">Team</a>
+    <a href="index.html#sponsors">Sponsors</a>
+    <a href="venue.html">Venue</a>
+  </nav>
+
+  <button id="theme-toggle" aria-label="Toggle dark mode">☀</button>
+
+  <header class="venue-head">
+    <h1>Venue Information</h1>
+    <p>Nanyang Executive Centre (NEC), Nanyang Technological University, Singapore</p>
+  </header>
+
+  <section id="where">
+    <div class="container">
+      <h2>Nanyang Executive Centre (NEC)</h2>
+      <ul class="facts">
+        <li><strong>Address:</strong> 60 Nanyang View, Singapore 639673</li>
+      </ul>
+      <div class="map-wrap">
+        <iframe title="Map of Nanyang Executive Centre" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+          src="https://www.google.com/maps?q=Nanyang+Executive+Centre,+60+Nanyang+View,+Singapore+639673&amp;output=embed"></iframe>
+      </div>
+      <div class="btn-row">
+        <a class="cta" href="https://maps.app.goo.gl/i3duLup5Asrdcw2KA" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="cta" href="https://www.ntu.edu.sg/life-at-ntu/accommodation/nanyang-executive-centre" target="_blank" rel="noopener">NEC website</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="getting-there">
+    <div class="container">
+      <h2>Getting There from Changi Airport</h2>
+      <h3 class="subhead">Taxi or ride-hailing (recommended, 35–45 min)</h3>
+      <p>Take a taxi at the airport, or book a ride with an app. We recommend downloading and registering before you travel, while you have internet:</p>
+      <ul>
+        <li><a href="https://www.grab.com/sg/" target="_blank" rel="noopener">Grab</a></li>
+        <li><a href="https://zig.live/" target="_blank" rel="noopener">Zig</a></li>
+        <li><a href="https://tada.global/" target="_blank" rel="noopener">Tada</a></li>
+      </ul>
+      <h3 class="subhead">Train (about 2 hours)</h3>
+      <p>If you are travelling light, board at Changi Airport (CG2), transfer at Tanah Merah (EW4), and ride to Boon Lay or Pioneer station. From there, take a taxi or bus to NEC.</p>
+      <p style="margin-top:1.25rem">More visitor information: <a href="https://www.ntu.edu.sg/about-us/visiting-ntu" target="_blank" rel="noopener">Visiting NTU</a></p>
+    </div>
+  </section>
+
+  <section id="rooms">
+    <div class="container">
+      <h2>Meeting Spaces</h2>
+      <div class="rooms">
+        <figure class="room">
+          <img src="assets/venue/Cypress.jpeg" alt="Cypress Hall 1 at NEC" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph">Photo coming soon</div>
+          <figcaption><strong>Reception dinner: <span class="room-name">Cypress Hall 1</span></strong></figcaption>
+        </figure>
+        <figure class="room">
+          <img src="assets/venue/Angsana.jpeg" alt="Angsana Theatre 1–2 at NEC" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph">Photo coming soon</div>
+          <figcaption><strong>Main meeting room: <span class="room-name">Angsana Theatre 1–2</span></strong></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 AgentForge Workshop. Hosted at Nanyang Technological University, Singapore.</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.setAttribute('data-theme', 'dark');
+      toggle.textContent = '☾';
+    }
+    toggle.addEventListener('click', () => {
+      if (document.body.getAttribute('data-theme') === 'dark') {
+        document.body.removeAttribute('data-theme');
+        toggle.textContent = '☀';
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        toggle.textContent = '☾';
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+    const menuBtn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('site-menu');
+    function setMenu(open) {
+      menu.hidden = !open;
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.textContent = open ? '✕' : '☰';
+    }
+    menuBtn.addEventListener('click', () => setMenu(menu.hidden));
+    menu.addEventListener('click', e => { if (e.target.tagName === 'A') setMenu(false); });
+    document.addEventListener('click', e => { if (!menu.hidden && !menu.contains(e.target) && e.target !== menuBtn) setMenu(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { setMenu(false); menuBtn.focus(); } });
+  </script>
+
+</body>
+</html>
