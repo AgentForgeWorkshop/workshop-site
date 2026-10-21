@@ -344,6 +344,16 @@
     }
     #menu-toggle:hover, #menu-toggle[aria-expanded="true"] { border-color: var(--accent); }
     #menu-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    #schedule-link {
+      position: fixed; top: 4rem; left: 1.25rem; z-index: 99;
+      background: var(--bg-panel); color: var(--ink); text-decoration: none;
+      border: 1px solid var(--border); border-radius: 999px;
+      width: 2.4rem; height: 2.4rem; display: flex; align-items: center; justify-content: center;
+      font-size: 1.05rem; line-height: 1;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    #schedule-link:hover { border-color: var(--accent); }
+    #schedule-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     #site-menu {
       position: fixed; top: 4rem; left: 1.25rem; z-index: 100; min-width: 11rem;
       background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px;
@@ -413,6 +423,8 @@
     <a href="#sponsors">Sponsors</a>
     <a href="venue.html">Venue</a>
   </nav>
+
+  <a id="schedule-link" href="#schedule" aria-label="Jump to schedule" title="Schedule">📅</a>
 
   <button id="theme-toggle" aria-label="Toggle dark mode">☀</button>
 
